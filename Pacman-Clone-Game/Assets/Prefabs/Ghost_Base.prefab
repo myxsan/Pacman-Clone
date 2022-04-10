@@ -397,7 +397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialBehaviour: {fileID: 0}
-  target: {fileID: 0}
+  target: {fileID: 8163104001687211543, guid: 99c7105fae773ab4fbf944422414c689, type: 3}
   points: 200
 --- !u!114 &8227679961848340839
 MonoBehaviour:
