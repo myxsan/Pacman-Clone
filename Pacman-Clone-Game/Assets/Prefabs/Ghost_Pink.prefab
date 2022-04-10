@@ -27,6 +27,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghost_Pink
       objectReference: {fileID: 0}
+    - target: {fileID: 4513493643390687461, guid: ec6743201dbd2bf4c9ed743cb9fc7e31, type: 3}
+      propertyPath: initialBehaviour
+      value: 
+      objectReference: {fileID: 6075673879817350032, guid: 9f772aebffb30ae44b66fca570346188, type: 3}
     - target: {fileID: 7979455403149953728, guid: ec6743201dbd2bf4c9ed743cb9fc7e31, type: 3}
       propertyPath: m_RootOrder
       value: 0

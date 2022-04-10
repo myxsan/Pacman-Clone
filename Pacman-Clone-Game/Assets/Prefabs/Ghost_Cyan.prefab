@@ -27,6 +27,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghost_Cyan
       objectReference: {fileID: 0}
+    - target: {fileID: 4513493643390687461, guid: ec6743201dbd2bf4c9ed743cb9fc7e31, type: 3}
+      propertyPath: initialBehaviour
+      value: 
+      objectReference: {fileID: 6075673879817350032}
     - target: {fileID: 7979455403149953728, guid: ec6743201dbd2bf4c9ed743cb9fc7e31, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -77,3 +81,14 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 7391304e6dcdc594484288107bfd217f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec6743201dbd2bf4c9ed743cb9fc7e31, type: 3}
+--- !u!114 &6075673879817350032 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8227679961848340839, guid: ec6743201dbd2bf4c9ed743cb9fc7e31, type: 3}
+  m_PrefabInstance: {fileID: 2774136424724695799}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c39641899b191d845adb63f2af6f1f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
