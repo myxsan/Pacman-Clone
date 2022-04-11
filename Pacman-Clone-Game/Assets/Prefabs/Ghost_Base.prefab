@@ -412,6 +412,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 0
+  inside: {fileID: 0}
+  outside: {fileID: 0}
 --- !u!114 &1177847393850241369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,6 +453,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 8
+  body: {fileID: 510357381923750493}
+  eyes: {fileID: 8705053589252617115}
+  frightened_blue: {fileID: 1560785776172874456}
+  frightened_blueandwhite: {fileID: 618136914132257187}
 --- !u!1 &6938314106173744439
 GameObject:
   m_ObjectHideFlags: 0
