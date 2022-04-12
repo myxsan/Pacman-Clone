@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     public Pacman pacman;
     public Transform pellets;
     public int ghostMultiplier { get; private set; } = 1;
-
     public int score { get; private set; }
     public int lives { get; private set; }
 
@@ -44,6 +43,7 @@ public class GameManager : MonoBehaviour
     private void ResetState()
     {
         for (int i = 0; i < this.ghosts.Length; i++) { this.ghosts[i].ResetState(); }
+        SetGhosts(true);
 
         this.pacman.ResetState();
     }
@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
     public void PacmanEaten()
     {
         pacman.DeathSequence();
+        SetGhosts(false);
         this.pacman.gameObject.SetActive(false);
 
         SetLives(this.lives -1);
@@ -113,6 +114,13 @@ public class GameManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void SetGhosts(bool isActive)
+    {
+        for ( int i = 0; i < ghosts.Length; i++){
+            ghosts[i].gameObject.SetActive(isActive);
+        }
     }
     private void ResetGhostMultiplier()
     {
