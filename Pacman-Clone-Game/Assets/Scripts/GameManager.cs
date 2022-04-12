@@ -30,11 +30,12 @@ public class GameManager : MonoBehaviour
     {
         SetScore(0);
         SetLives(3);
-
+        NewRound();
     }
 
     private void NewRound()
     {
+        this.gameObject.SetActive(true);
         foreach (Transform pellet in this.pellets) { pellet.gameObject.SetActive(true); }
 
         ResetState();
@@ -45,9 +46,6 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < this.ghosts.Length; i++) { this.ghosts[i].ResetState(); }
 
         this.pacman.ResetState();
-
-
-        ResetGhostMultiplier();
     }
     private void GameOver()
     {
@@ -72,11 +70,12 @@ public class GameManager : MonoBehaviour
     }
     public void PacmanEaten()
     {
+        pacman.DeathSequence();
         this.pacman.gameObject.SetActive(false);
 
         SetLives(this.lives -1);
 
-        if(this.lives > 0){Invoke(nameof(ResetState), 3.0f);}
+        if(this.lives > 0){Invoke(nameof(ResetState), 2.0f);}
         else{GameOver();}
     }
     public void PelletEaten(Pellet pellet)
@@ -87,8 +86,8 @@ public class GameManager : MonoBehaviour
 
         if(!HasRemainingPellets())
         {
-            this.gameObject.SetActive(false);
             Invoke(nameof(NewRound), 3.0f);
+            this.gameObject.SetActive(false);
         }
     }
 
