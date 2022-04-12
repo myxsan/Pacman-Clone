@@ -72,7 +72,6 @@ public class GameManager : MonoBehaviour
     {
         pacman.DeathSequence();
         SetGhosts(false);
-        this.pacman.gameObject.SetActive(false);
 
         SetLives(this.lives -1);
 
