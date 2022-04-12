@@ -15,7 +15,7 @@ public class GhostFrightened : GhostBehaviour
     {
         base.Enable(duration);
 
-        this.body.enabled = true;
+        this.body.enabled = false;
         this.eyes.enabled = false;
         this.frightened_blue.enabled = true;
         this.frightened_blueandwhite.enabled = false;
@@ -68,6 +68,7 @@ public class GhostFrightened : GhostBehaviour
     private void OnDisable() 
     {
         this.ghost.movement.speedMultiplier = 1.0f;
+        ghost.scatter.enabled = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision) 

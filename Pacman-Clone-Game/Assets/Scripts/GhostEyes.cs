@@ -14,7 +14,7 @@ public class GhostEyes : MonoBehaviour
     private void Awake() 
     {
         this.spriteRenderer = GetComponent<SpriteRenderer>();
-        this.movement = GetComponent<Movement>();
+        this.movement = GetComponentInParent<Movement>();
     }
     
     private void Update()

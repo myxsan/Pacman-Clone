@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
     public float speed = 8.0f;
     public float speedMultiplier = 1.0f;
     public Vector2 initialDirection;
+    Vector3 initalPosition;
     public LayerMask obstacleLayer;
     public new Rigidbody2D rigidbody {get; private set;}
     public Vector2 direction {get; private set;}
@@ -18,6 +19,7 @@ public class Movement : MonoBehaviour
 
     private void Awake() 
     {
+        initalPosition = this.transform.position;
         this.rigidbody = GetComponent<Rigidbody2D>();
         this.strtingPosition = this.transform.position;
     }
@@ -28,6 +30,7 @@ public class Movement : MonoBehaviour
     }
     public void ResetState()
     {
+        this.transform.position = initalPosition;
         this.speedMultiplier = 1.0f;
         this.direction = initialDirection;
         this.nextDirection = Vector2.zero;
