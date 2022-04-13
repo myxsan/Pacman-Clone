@@ -39,7 +39,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (this.lives <= 0 || !HasRemainingPellets() && Input.anyKeyDown)
+        if (this.lives <= 0 && Input.GetKeyDown(KeyCode.R))
+        {
+            NewGame();
+        }
+        if (!HasRemainingPellets() && Input.GetKeyDown(KeyCode.R))
         {
             NewGame();
         }

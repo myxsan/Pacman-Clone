@@ -693,7 +693,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PRESS ANY BUTTON TO RESTART
+  m_text: PRESS R BUTTON TO RESTART
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d69a83e794d07ad429a34ca1d630d084, type: 2}
   m_sharedMaterial: {fileID: -5966024111479741245, guid: d69a83e794d07ad429a34ca1d630d084, type: 2}
