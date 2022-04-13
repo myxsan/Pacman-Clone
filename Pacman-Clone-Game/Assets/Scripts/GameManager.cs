@@ -12,11 +12,12 @@ public class GameManager : MonoBehaviour
     public int score { get; private set; }
     public int lives { get; private set; }
 
+
     void Start()
     {
         NewGame();
     }
-    
+
     private void Update()
     {
         if(this.lives <= 0 && Input.anyKeyDown)
