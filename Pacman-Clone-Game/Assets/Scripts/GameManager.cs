@@ -8,15 +8,30 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public Ghost[] ghosts;
+
+    [Header("Pacman Info")]
     public Pacman pacman;
     public Transform pellets;
     public int ghostMultiplier { get; private set; } = 1;
     public int score { get; private set; }
     public int lives { get; private set; }
+    public AudioClip pacmanEatenSFX;
+    public AudioClip ghostEatenSFX;
+    AudioSource audioSource;
+
+    [Header("UI")]
     [SerializeField] TextMeshProUGUI livesText;
     [SerializeField] TextMeshProUGUI scoreText;
 
+    [Header("Audios")]
     [SerializeField] TextMeshProUGUI gameOverText;
+    [SerializeField] TextMeshProUGUI gameOverMessageText;
+
+
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     void Start()
     {
         NewGame();
@@ -24,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(this.lives <= 0 && Input.anyKeyDown)
+        if (this.lives <= 0 && Input.anyKeyDown)
         {
             NewGame();
         }
@@ -42,7 +57,9 @@ public class GameManager : MonoBehaviour
         this.gameObject.SetActive(true);
         foreach (Transform pellet in this.pellets) { pellet.gameObject.SetActive(true); }
 
+        audioSource.Stop();
         gameOverText.enabled = false;
+        gameOverMessageText.enabled = false;
 
         ResetState();
     }
@@ -57,7 +74,11 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         gameOverText.enabled = true;
+        gameOverMessageText.enabled = true;
+
         for (int i = 0; i < this.ghosts.Length; i++) { this.ghosts[i].gameObject.SetActive(false); }
+
+        audioSource.Play();
 
         this.pacman.gameObject.SetActive(false);
     }
@@ -77,16 +98,21 @@ public class GameManager : MonoBehaviour
         int points = ghost.points * this.ghostMultiplier;
         SetScore(this.score + points);
         this.ghostMultiplier++;
+        AudioSource.PlayClipAtPoint(ghostEatenSFX, this.transform.position);
+
     }
     public void PacmanEaten()
     {
         pacman.DeathSequence();
         SetGhosts(false);
 
-        SetLives(this.lives -1);
+        SetLives(this.lives - 1);
 
-        if(this.lives > 0){Invoke(nameof(ResetState), 2.0f);}
-        else{GameOver();}
+        AudioSource.PlayClipAtPoint(pacmanEatenSFX, this.transform.position);
+
+        if (this.lives > 0) { Invoke(nameof(ResetState), 2.0f); }
+        else { GameOver(); }
+
     }
     public void PelletEaten(Pellet pellet)
     {
@@ -94,7 +120,7 @@ public class GameManager : MonoBehaviour
 
         SetScore(this.score + pellet.points);
 
-        if(!HasRemainingPellets())
+        if (!HasRemainingPellets())
         {
             Invoke(nameof(NewRound), 3.0f);
             this.gameObject.SetActive(false);
@@ -114,9 +140,9 @@ public class GameManager : MonoBehaviour
     }
     private bool HasRemainingPellets()
     {
-        foreach(Transform pellet in pellets)
+        foreach (Transform pellet in pellets)
         {
-            if(pellet.gameObject.activeSelf)
+            if (pellet.gameObject.activeSelf)
             {
                 return true;
             }
@@ -127,7 +153,8 @@ public class GameManager : MonoBehaviour
 
     public void SetGhosts(bool isActive)
     {
-        for ( int i = 0; i < ghosts.Length; i++){
+        for (int i = 0; i < ghosts.Length; i++)
+        {
             ghosts[i].gameObject.SetActive(isActive);
         }
     }

@@ -9,10 +9,13 @@ public class Pacman : MonoBehaviour
     public AnimatedSprite deathSequence;
     public SpriteRenderer spriteRenderer { get; private set; }
     public new Collider2D collider { get; private set; }
-    public Movement movement {get; private set;}
+    public Movement movement { get; private set; }
+    AudioSource audioSource;
+
 
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<Collider2D>();
         movement = GetComponent<Movement>();
@@ -60,6 +63,15 @@ public class Pacman : MonoBehaviour
         deathSequence.enabled = true;
         deathSequence.spriteRenderer.enabled = true;
         deathSequence.Restart();
-
+    }
+    private void OnDisable()
+    {
+        audioSource.Stop();
+        audioSource.loop = false;
+    }
+    private void OnEnable()
+    {
+        audioSource.Play();
+        audioSource.loop = true;
     }
 }
