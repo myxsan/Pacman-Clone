@@ -11,20 +11,20 @@ public class Movement : MonoBehaviour
     public Vector2 initialDirection;
     Vector3 initalPosition;
     public LayerMask obstacleLayer;
-    public new Rigidbody2D rigidbody {get; private set;}
-    public Vector2 direction {get; private set;}
-    public Vector2 nextDirection {get; private set;}
-    public Vector3 strtingPosition {get; private set;}
+    public new Rigidbody2D rigidbody { get; private set; }
+    public Vector2 direction { get; private set; }
+    public Vector2 nextDirection { get; private set; }
+    public Vector3 strtingPosition { get; private set; }
 
 
-    private void Awake() 
+    private void Awake()
     {
         initalPosition = this.transform.position;
         this.rigidbody = GetComponent<Rigidbody2D>();
         this.strtingPosition = this.transform.position;
     }
 
-    private void Start() 
+    private void Start()
     {
         ResetState();
     }
@@ -37,14 +37,15 @@ public class Movement : MonoBehaviour
         this.rigidbody.isKinematic = false;
         this.enabled = true;
     }
-    private void FixedUpdate() 
+    private void FixedUpdate()
     {
         Vector2 position = this.rigidbody.position;
         Vector2 translation = this.direction * this.speed * this.speedMultiplier * Time.deltaTime;
         this.rigidbody.MovePosition(position + translation);
     }
-    private void Update() {
-        if(this.nextDirection != Vector2.zero)
+    private void Update()
+    {
+        if (this.nextDirection != Vector2.zero)
         {
             SetDirection(nextDirection);
         }
@@ -52,7 +53,7 @@ public class Movement : MonoBehaviour
 
     public void SetDirection(Vector2 direction, bool forced = false)
     {
-        if(forced || !Occupied(direction))
+        if (forced || !Occupied(direction))
         {
             this.direction = direction;
             this.nextDirection = Vector2.zero;

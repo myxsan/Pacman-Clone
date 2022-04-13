@@ -9,14 +9,14 @@ public class AnimatedSprite : MonoBehaviour
     public SpriteRenderer spriteRenderer { get; private set; }
     public Sprite[] sprites;
     public float animationTime = 0.25f;
-    public int animationFrame {get; private set;}
+    public int animationFrame { get; private set; }
     public bool loop = true;
 
     private void Awake()
     {
         this.spriteRenderer = GetComponent<SpriteRenderer>();
     }
-    private void Start() 
+    private void Start()
     {
         InvokeRepeating(nameof(Advance), this.animationTime, this.animationTime);
     }
@@ -29,7 +29,7 @@ public class AnimatedSprite : MonoBehaviour
         }
         this.animationFrame++;
 
-        if(this.animationFrame >= this.sprites.Length && this.loop) 
+        if (this.animationFrame >= this.sprites.Length && this.loop)
         {
             this.animationFrame = 0;
         }
@@ -42,7 +42,7 @@ public class AnimatedSprite : MonoBehaviour
     public void Restart()
     {
         this.animationFrame = -1;
-        
+
         Advance();
     }
 }

@@ -9,7 +9,7 @@ public class GhostFrightened : GhostBehaviour
     public SpriteRenderer frightened_blue;
     public SpriteRenderer frightened_blueandwhite;
 
-    public bool eaten {get; private set;}
+    public bool eaten { get; private set; }
 
     public override void Enable(float duration)
     {
@@ -28,7 +28,7 @@ public class GhostFrightened : GhostBehaviour
         if (!this.eaten)
         {
             this.frightened_blue.enabled = false;
-            this.frightened_blueandwhite.enabled = true;  
+            this.frightened_blueandwhite.enabled = true;
             this.frightened_blueandwhite.GetComponent<AnimatedSprite>().Restart();
 
         }
@@ -65,21 +65,21 @@ public class GhostFrightened : GhostBehaviour
         this.ghost.movement.speedMultiplier = 0.5f;
     }
 
-    private void OnDisable() 
+    private void OnDisable()
     {
         this.ghost.movement.speedMultiplier = 1.0f;
         ghost.scatter.enabled = true;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) 
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Pacman"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Pacman"))
         {
-            if(this.enabled){ Eaten();}
+            if (this.enabled) { Eaten(); }
         }
     }
 
-     private void OnTriggerEnter2D(Collider2D other) 
+    private void OnTriggerEnter2D(Collider2D other)
     {
         Node node = other.GetComponent<Node>();
 
@@ -88,12 +88,12 @@ public class GhostFrightened : GhostBehaviour
             Vector2 direction = Vector2.zero;
             float maxDistance = float.MinValue;
 
-            foreach(Vector2 availableDirection in node.availableDirections)
+            foreach (Vector2 availableDirection in node.availableDirections)
             {
                 Vector3 newPosition = this.transform.position + new Vector3(availableDirection.x, availableDirection.y, 0.0f);
                 float distance = (this.ghost.target.position - newPosition).sqrMagnitude;
 
-                if (distance  > maxDistance)
+                if (distance > maxDistance)
                 {
                     direction = availableDirection;
                     maxDistance = distance;

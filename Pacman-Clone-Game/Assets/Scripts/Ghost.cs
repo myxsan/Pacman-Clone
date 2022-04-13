@@ -5,15 +5,16 @@ using UnityEngine;
 [RequireComponent(typeof(Movement))]
 public class Ghost : MonoBehaviour
 {
-    public Movement movement {get; private set;}
-    public GhostHome home{ get; private set;}
-    public GhostScatter scatter{ get; private set;}
-    public GhostChase chase{ get; private set;}
-    public GhostFrightened frightened{ get; private set;}
+    public Movement movement { get; private set; }
+    public GhostHome home { get; private set; }
+    public GhostScatter scatter { get; private set; }
+    public GhostChase chase { get; private set; }
+    public GhostFrightened frightened { get; private set; }
     public GhostBehaviour initialBehaviour;
     public Transform target;
     public int points = 200;
-    private void Awake() {
+    private void Awake()
+    {
         this.movement = GetComponent<Movement>();
         this.home = GetComponent<GhostHome>();
         this.scatter = GetComponent<GhostScatter>();
@@ -22,7 +23,7 @@ public class Ghost : MonoBehaviour
         this.initialBehaviour = GetComponent<GhostBehaviour>();
     }
 
-    private void Start() 
+    private void Start()
     {
         ResetState();
     }
@@ -36,22 +37,24 @@ public class Ghost : MonoBehaviour
         this.chase.Disable();
         this.scatter.Enable();
 
-        if(this.initialBehaviour != this.home){
+        if (this.initialBehaviour != this.home)
+        {
             this.home.Disable();
         }
-        if(this.initialBehaviour != null){
+        if (this.initialBehaviour != null)
+        {
             this.initialBehaviour.Enable();
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) 
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Pacman"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Pacman"))
         {
-            if(this.frightened.enabled && FindObjectOfType<GameManager>().enabled){ FindObjectOfType<GameManager>().GhostEaten(this);}
-            else {FindObjectOfType<GameManager>().PacmanEaten();}
+            if (this.frightened.enabled && FindObjectOfType<GameManager>().enabled) { FindObjectOfType<GameManager>().GhostEaten(this); }
+            else { FindObjectOfType<GameManager>().PacmanEaten(); }
         }
     }
 
-    
+
 }

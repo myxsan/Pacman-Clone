@@ -9,13 +9,14 @@ public class GhostHome : GhostBehaviour
 
     private void OnDisable()
     {
-        if(this.gameObject.activeSelf)
+        if (this.gameObject.activeSelf)
         {
-        StartCoroutine(ExitTransistion());
+            StartCoroutine(ExitTransistion());
         }
     }
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
 
         if (this.gameObject.activeSelf)
         {
@@ -23,8 +24,9 @@ public class GhostHome : GhostBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
-        if(this.enabled && other.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (this.enabled && other.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
         {
             this.ghost.movement.SetDirection(-this.ghost.movement.direction);
         }
@@ -51,7 +53,7 @@ public class GhostHome : GhostBehaviour
 
             yield return null;
         }
-        
+
         elapsed = 0.0f;
 
         while (elapsed < duration)
@@ -65,7 +67,7 @@ public class GhostHome : GhostBehaviour
             yield return null;
         }
 
-        this.ghost.movement.SetDirection(new Vector2(Random.value <0.5f ? -1.0f : 1.0f, 0.0f), true);
+        this.ghost.movement.SetDirection(new Vector2(Random.value < 0.5f ? -1.0f : 1.0f, 0.0f), true);
         this.ghost.movement.rigidbody.isKinematic = false;
         this.ghost.movement.enabled = true;
     }

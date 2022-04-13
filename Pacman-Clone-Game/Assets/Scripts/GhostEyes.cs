@@ -11,12 +11,12 @@ public class GhostEyes : MonoBehaviour
     public Sprite left;
     public Sprite right;
 
-    private void Awake() 
+    private void Awake()
     {
         this.spriteRenderer = GetComponent<SpriteRenderer>();
         this.movement = GetComponentInParent<Movement>();
     }
-    
+
     private void Update()
     {
         if (this.movement.direction == Vector2.up)
