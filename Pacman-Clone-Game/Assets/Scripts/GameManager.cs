@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (this.lives <= 0 && Input.anyKeyDown)
+        if (this.lives <= 0 || !HasRemainingPellets() && Input.anyKeyDown)
         {
             NewGame();
         }
@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
     }
     private void GameOver()
     {
+        this.gameObject.SetActive(true);
         gameOverText.enabled = true;
         gameOverMessageText.enabled = true;
 
@@ -122,7 +123,7 @@ public class GameManager : MonoBehaviour
 
         if (!HasRemainingPellets())
         {
-            Invoke(nameof(NewRound), 3.0f);
+            Invoke(nameof(GameOver), 2.0f);
             this.gameObject.SetActive(false);
         }
     }
