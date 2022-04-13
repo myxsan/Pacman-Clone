@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,8 +13,10 @@ public class GameManager : MonoBehaviour
     public int ghostMultiplier { get; private set; } = 1;
     public int score { get; private set; }
     public int lives { get; private set; }
+    [SerializeField] TextMeshProUGUI livesText;
+    [SerializeField] TextMeshProUGUI scoreText;
 
-
+    [SerializeField] TextMeshProUGUI gameOverText;
     void Start()
     {
         NewGame();
@@ -38,6 +42,8 @@ public class GameManager : MonoBehaviour
         this.gameObject.SetActive(true);
         foreach (Transform pellet in this.pellets) { pellet.gameObject.SetActive(true); }
 
+        gameOverText.enabled = false;
+
         ResetState();
     }
 
@@ -50,6 +56,7 @@ public class GameManager : MonoBehaviour
     }
     private void GameOver()
     {
+        gameOverText.enabled = true;
         for (int i = 0; i < this.ghosts.Length; i++) { this.ghosts[i].gameObject.SetActive(false); }
 
         this.pacman.gameObject.SetActive(false);
@@ -58,10 +65,12 @@ public class GameManager : MonoBehaviour
     private void SetScore(int score)
     {
         this.score = score;
+        scoreText.text = score.ToString("0000");
     }
     private void SetLives(int lives)
     {
         this.lives = lives;
+        livesText.text = "x" + lives.ToString();
     }
     public void GhostEaten(Ghost ghost)
     {
